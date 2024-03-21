@@ -18,11 +18,15 @@
       ];
     };
 
-    darwinModules.default = {
+    darwinModules.default = {lib, ...}: {
       imports = [
         home-manager.darwinModules.home-manager
         ./home.nix
       ];
+
+      home-manager.users.reimerei.home = {
+        homeDirectory = lib.mkForce "/Users/reimerei";
+      };
     };
   };
 }

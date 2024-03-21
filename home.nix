@@ -18,7 +18,7 @@
 
       home = {
         username = config.users.users.reimerei.name;
-        homeDirectory = config.users.users.reimerei.home;
+        homeDirectory = lib.mkDefault config.users.users.reimerei.home;
         stateVersion = "23.11";
       };
 
