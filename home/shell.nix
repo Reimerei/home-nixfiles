@@ -7,46 +7,23 @@
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
-    autosuggestion = {
-      enable = true;
-    };
+    autosuggestion.enable = true;
+    historySubstringSearch.enable = true;
     enableCompletion = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "autojump"
-        "docker"
-        "terraform"
-        "docker-compose"
-        "rsync"
-        "mix"
-        "git"
-        "ansible"
-      ];
-      theme = "risto";
+    syntaxHighlighting. enable = false;
+    history = {
+      size = 50000;
+      save = 50000;
+      ignoreAllDups = true;
     };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = lib.cleanSource ./shell/p10k.zsh;
-        file = "";
-      }
-    ];
+
     initExtra = ''
-      if [[ -r "''${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\''${(%):-%n}.zsh" ]]; then
-        source "\''${XDG_CACHE_HOME:-\$HOME/.cache}/p10k-instant-prompt-\''${(%):-%n}.zsh"
-      fi
       if [[ -f /opt/homebrew/bin/brew ]]; then
         eval $(/opt/homebrew/bin/brew shellenv)
       fi
       PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-      source "$HOME/.config/zsh/plugins/powerlevel10k-config"
     '';
+
     shellAliases = {
       ip = "ip --color=auto";
       s = "sudo";
@@ -64,7 +41,17 @@
       lla = "eza -lga";
       cat = "cat -n";
       sc = "sudo systemctl";
-      lc = "sudo journalctl -fe -u ";
+      jf = "sudo journalctl -fe -u ";
     };
+  };
+
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = with builtins; fromTOML (readFile ./shell/starship.toml);
   };
 }
