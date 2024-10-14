@@ -8,7 +8,6 @@
     enable = true;
     dotDir = ".config/zsh";
     autosuggestion.enable = true;
-    historySubstringSearch.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = false;
     history = {
@@ -18,6 +17,9 @@
     };
 
     initExtra = ''
+      bindkey '^[[A' history-beginning-search-backward
+      bindkey '^[[B' history-beginning-search-forward
+
       if [[ -f /opt/homebrew/bin/brew ]]; then
         eval $(/opt/homebrew/bin/brew shellenv)
       fi
