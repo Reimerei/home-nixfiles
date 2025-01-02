@@ -17,11 +17,28 @@
     };
 
     initExtra = ''
-      # Mac
+      # Basic line editing
+      bindkey "^A" beginning-of-line
+      bindkey "^E" end-of-line
+      bindkey "^K" kill-line
+      bindkey "^U" kill-whole-line
+
+      # Word movement
+      bindkey "^[OD" backward-word  # Ctrl+Left
+      bindkey "^[OC" forward-word   # Ctrl+Right
+
+      # FZF
+      bindkey "^F" fzf-file-widget
+      bindkey "^R" fzf-history-widget
+
+      # Screen
+      bindkey "^L" clear-screen
+
+      # History search - Mac
       bindkey '^[[A' history-beginning-search-backward
       bindkey '^[[B' history-beginning-search-forward
 
-      # Linux
+      # History search - Linux
       bindkey '^[OA' history-beginning-search-backward
       bindkey '^[OB' history-beginning-search-forward
 
