@@ -23,10 +23,6 @@
       bindkey "^K" kill-line
       bindkey "^U" kill-whole-line
 
-      # Word movement
-      bindkey "^[OD" backward-word  # Ctrl+Left
-      bindkey "^[OC" forward-word   # Ctrl+Right
-
       # FZF
       bindkey "^F" fzf-file-widget
       bindkey "^R" fzf-history-widget
@@ -55,7 +51,7 @@
       tf = "terraform";
       dc = "docker compose";
       docker-compose = "docker compose";
-      pw = "cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 22; echo";
+      pw = "openssl rand -base64 24";
       du = "ncdu";
       use = "nix-shell -p";
       ls = "eza";
